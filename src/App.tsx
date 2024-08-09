@@ -19,12 +19,6 @@ function App() {
     e.preventDefault();
     createPaymentLink();
   };
-
-  useEffect(() => {
-    if (result && result.success) {
-      window.location.href = paymentSuccess;
-    }
-  }, [result]);
   ///this result snippet was populated with Copilot
   return (
     <div className="container">
@@ -85,6 +79,11 @@ function App() {
       </div>
       <button type="submit">Create Payment Link</button>
     </form>
+    {error && (
+      <div className="error-message" style={{ color: 'red', marginTop: '10px' }}>
+        {error?.message || 'An error occurred. Please try again.'}
+      </div>
+    )}
     {paymentLink && (
       <div className="payment-link">
         <h2>Payment Link</h2>
