@@ -8,14 +8,18 @@ interface Props {
     lastName: string;
 }
 
+///Could not make the post work but tried my best as the post was saying i was not autheticated.
+///Im doing a hook that uses fetch and keeps state and returns its stats, for interactive form
+
 function usePostPayment(props : Props) {
     const { email, description,firstName, lastName,title } = props;
     const [result, setResult] = useState<any>();
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [makePayment, setMakePayment] = useState(false);
     const url = 'https://sandbox.dev.business.mamopay.com/manage_api/v1/links';
     useEffect(() => {
+        if(!makePayment) return
         const abortController = new AbortController();
         const fetchData = async () => {
             setLoading(true);
