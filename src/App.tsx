@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import usePostPayment from './hooks/usePostPayment';
 
 function App() {
   const [email, setEmail] = useState('');
@@ -9,26 +10,10 @@ function App() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [paymentLink, setPaymentLink] = useState('');
+  const { error, loading, result, setMakePayment} = usePostPayment({ email, description, firstName, lastName, title });
 
   async function createPaymentLink() {
-    const response = await fetch('https://api.mamopay.com/v1/links', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer YOUR_API_KEY' // Replace with your actual API key
-      },
-      body: JSON.stringify({
-        link_type: 'inline',
-        email: email,
-        first_name: firstName,
-        last_name: lastName,
-        amount: amount,
-        title: title,
-        description: description
-      })
-    });
-
-    const data = await response.json();
+    setMakePayment(true);
     setPaymentLink(data.payment_link);
   }
 
