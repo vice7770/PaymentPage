@@ -1,5 +1,14 @@
+import { useEffect, useState } from 'react';
+import { useExpenses,useActualPage, useNumberOfItems, useNumberOfPages, useWeatherActions } from '../stores/expenses';
 const HomePage = () => {
-    return <h1>Home Page</h1>;
-  };
+  const expenses = useExpenses();
   
-  export default HomePage;
+  return (
+    <div>
+      <h1>Expenses</h1>
+      
+    </div>
+  );
+};
+
+export default HomePage;
