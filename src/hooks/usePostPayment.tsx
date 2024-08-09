@@ -10,7 +10,7 @@ interface Props {
 
 function usePostPayment(props : Props) {
     const { email, description,firstName, lastName,title } = props;
-    const [result, setResult] = useState<any[]>([]);
+    const [result, setResult] = useState<any>();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [makePayment, setMakePayment] = useState(false);
